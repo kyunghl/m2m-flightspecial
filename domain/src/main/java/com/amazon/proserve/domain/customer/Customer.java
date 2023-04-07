@@ -4,8 +4,10 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.time.LocalDate;
+import java.util.Objects;
+
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
 
 import com.amazon.proserve.domain.customer.vo.*;
 
@@ -17,17 +19,33 @@ public final class Customer {
     private CustomerNo customerNo;
 
     @NotNull
-    private CustomerName customerName;
+    private CustomerName name;
 
-    @NotNull
-    @Builder.Default
-    private LocalDateTime registrationDateTime = LocalDateTime.now();
+    private Email email;
 
-    @NotNull
-    @Builder.Default
-    private LocalDateTime modifyDateTime = LocalDateTime.now();
+    private Address address;
+
+    private LocalDate dateOfBirth;
 
     public void changeCustomerName(final String newCustomerName) {
-        this.customerName = com.amazon.proserve.domain.customer.vo.CustomerName.of(newCustomerName);
+        this.name = com.amazon.proserve.domain.customer.vo.CustomerName.of(newCustomerName);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Customer) {
+            Customer customer = (Customer) obj;
+            if (name.equals(customer.getName())
+                    && email.equals(customer.getEmail())
+                    && address.equals(customer.getAddress())
+                    && dateOfBirth.equals(customer.getDateOfBirth()))
+                return true;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, email, address, dateOfBirth);
     }
 }

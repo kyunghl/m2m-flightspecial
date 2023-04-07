@@ -2,7 +2,6 @@ package com.amazon.proserve.infrastructure.customer.persistence;
 
 import com.amazon.proserve.domain.customer.Customer;
 import com.amazon.proserve.domain.customer.repository.CustomerRepository;
-import com.amazon.proserve.domain.customer.vo.CustomerName;
 import com.amazon.proserve.domain.customer.vo.CustomerNo;
 import com.amazon.proserve.infrastructure.customer.persistence.jpa.CustomerJpaEntity;
 import com.amazon.proserve.infrastructure.customer.persistence.jpa.CustomerJpaRepository;
@@ -27,13 +26,6 @@ public class CustomerPersistenceAdapter implements CustomerRepository {
     @Override
     public Customer findByCustomerNo(CustomerNo customerNo) {
         return repository.findCustomerJpaEntityByCustomerNo(customerNo.getValue())
-                .orElseThrow(NoResultException::new)
-                .toDomainEntity();
-    }
-
-    @Override
-    public Customer findByCustomerName(CustomerName customerName) {
-        return repository.findCustomerJpaEntityByCustomerName(customerName.getValue())
                 .orElseThrow(NoResultException::new)
                 .toDomainEntity();
     }

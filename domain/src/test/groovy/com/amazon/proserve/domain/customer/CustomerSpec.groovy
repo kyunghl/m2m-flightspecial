@@ -21,7 +21,7 @@ class CustomerSpec extends Specification {
         when:
         Customer Customer = Customer.builder()
                 .customerNo(CustomerNo.of(BigInteger.ONE))
-                .customerName(CustomerName.of("Bingo"))
+                .name(CustomerName.of("Bingo"))
                 .build()
 
         then:
@@ -31,12 +31,12 @@ class CustomerSpec extends Specification {
         given:
         Customer Customer = Customer.builder()
                 .customerNo(CustomerNo.of(BigInteger.ONE))
-                .customerName(CustomerName.of("Bingo"))
+                .name(CustomerName.of("Bingo"))
                 .build()
 
         when:
         Customer.changeCustomerName("Happy")
         then:
-        Customer.getCustomerName() == CustomerName.of("Happy")
+        Customer.getName() == CustomerName.of("Happy")
     }
 }

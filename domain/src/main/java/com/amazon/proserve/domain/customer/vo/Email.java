@@ -5,7 +5,7 @@ import lombok.Value;
 import javax.validation.constraints.NotNull;
 
 @Value(staticConstructor = "of")
-public class CustomerNo {
+public class Email {
     @NotNull
-    Integer value;
+    String value;
 }

@@ -7,8 +7,7 @@ import javax.persistence.*;
 import com.amazon.proserve.domain.customer.Customer;
 import com.amazon.proserve.domain.customer.vo.*;
 
-import java.math.BigInteger;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "Customers")
@@ -19,33 +18,39 @@ import java.time.LocalDateTime;
 @Builder
 public class CustomerJpaEntity {
         @Id
-        @Column(name = "CustomerNo", nullable = false)
-        private BigInteger customerNo;
+        @Column(name = "customer_no", nullable = false)
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Integer customerNo;
 
-        @Column(name = "CustomerName", nullable = false)
-        private String customerName;
+        @Column(name = "name", nullable = false)
+        private String name;
 
-        @Column(name = "RegDateTime", nullable = false, columnDefinition = "TIMESTAMP")
-        private LocalDateTime registrationDateTime;
+        @Column(name = "email", nullable = true)
+        private String email;
 
-        @Column(name = "ModDateTime", nullable = false, columnDefinition = "TIMESTAMP")
-        private LocalDateTime modifyDateTime;
+        @Column(name = "address", nullable = true)
+        private String address;
+
+        @Column(name = "date_of_birth", columnDefinition = "DATE")
+        private LocalDate dateOfBirth;
 
         public static CustomerJpaEntity fromDomainEntity(Customer domainEntity) {
                 return CustomerJpaEntity.builder()
                                 .customerNo(domainEntity.getCustomerNo().getValue())
-                                .customerName(domainEntity.getCustomerName().getValue())
-                                .registrationDateTime(domainEntity.getRegistrationDateTime())
-                                .modifyDateTime(domainEntity.getModifyDateTime())
+                                .name(domainEntity.getName().getValue())
+                                .email(domainEntity.getEmail() != null ? domainEntity.getEmail().getValue() : "")
+                                .address(domainEntity.getAddress() != null ? domainEntity.getAddress().getValue() : "")
+                                .dateOfBirth(domainEntity.getDateOfBirth())
                                 .build();
         }
 
         public Customer toDomainEntity() {
                 return Customer.builder()
                                 .customerNo(CustomerNo.of(this.customerNo))
-                                .customerName(CustomerName.of(this.customerName))
-                                .registrationDateTime(this.registrationDateTime)
-                                .modifyDateTime(this.modifyDateTime)
+                                .name(CustomerName.of(this.name))
+                                .email(Email.of(this.email))
+                                .address(Address.of(this.address))
+                                .dateOfBirth(this.dateOfBirth)
                                 .build();
         }
 }

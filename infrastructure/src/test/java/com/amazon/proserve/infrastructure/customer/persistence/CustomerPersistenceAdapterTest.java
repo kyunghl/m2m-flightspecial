@@ -13,8 +13,6 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 
 import javax.transaction.Transactional;
 
-import static java.math.BigInteger.ONE;
-
 //@DataJpaTest
 @Testcontainers
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -28,8 +26,8 @@ public class CustomerPersistenceAdapterTest {
     public void saveAndGet() {
         CustomerRepository CustomerRepository = new CustomerPersistenceAdapter(repository);
         Customer customer = Customer.builder()
-                .customerNo(CustomerNo.of(ONE))
-                .customerName(CustomerName.of("Bingo"))
+                .customerNo(CustomerNo.of(1))
+                .name(CustomerName.of("Bingo"))
                 .build();
         CustomerRepository.save(customer);
         CustomerRepository.findByCustomerNo(customer.getCustomerNo());

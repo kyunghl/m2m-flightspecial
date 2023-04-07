@@ -15,7 +15,7 @@ class CustomerServiceSpec extends Specification {
         given:
         Customer Customer = Customer.builder()
                 .customerNo(CustomerNo.of(ONE))
-                .customerName(CustomerName.of("Bingo"))
+                .name(CustomerName.of("Bingo"))
                 .build()
         CustomerRepository repository = Mock()
         repository.findByCustomerNo(CustomerNo.of(ONE)) >> Customer
@@ -28,6 +28,6 @@ class CustomerServiceSpec extends Specification {
 
         then:
         1 * repository.save(Customer)
-        Customer.getCustomerName().value == "Sally"
+        Customer.getName().value == "Sally"
     }
 }

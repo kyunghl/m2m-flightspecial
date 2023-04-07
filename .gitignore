@@ -147,4 +147,8 @@ gradle-app.setting
 
 # End of https://www.toptal.com/developers/gitignore/api/intellij+all,gradle
 
+### Etc
 .DS_Store
+temp/
+.scannerwork/
+env/db/data/
