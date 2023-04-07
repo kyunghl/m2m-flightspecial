@@ -1,0 +1,11 @@
+version: '2'
+services:
+  db:
+    image: postgres:13
+    ports:
+      - "5432:5432"
+    environment:
+      TZ: Asiz/Seoul
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres1234
+    restart: unless-stopped
