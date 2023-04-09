@@ -33,7 +33,7 @@ public class FlightController {
         // }
 
         @GetMapping({ "/flightspecials" })
-        public List<FlightSpecial> getHFlightSpecial() {
+        public List<FlightSpecial> getFlightSpecial() {
                 return usecase.getFlightSpecial();
         }
 }

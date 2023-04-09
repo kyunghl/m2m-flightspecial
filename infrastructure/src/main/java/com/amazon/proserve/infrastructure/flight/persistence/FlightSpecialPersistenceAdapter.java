@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import javax.persistence.NoResultException;
 
@@ -33,6 +35,6 @@ public class FlightSpecialPersistenceAdapter implements FlightSpecialRepository 
     @Override
     public List<FlightSpecial> findAll() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+        return repository.findAll().stream().map(x -> x.toDomainEntity()).collect(Collectors.toList());
     }
 }
