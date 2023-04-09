@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@EntityScan(basePackages = { "com.amazon.proserve.infrastructure.customer.persistence.jpa" })
-@EnableJpaRepositories(basePackages = { "com.amazon.proserve.infrastructure.customer.persistence" })
+@EntityScan(basePackages = { "com.amazon.proserve.infrastructure.flight.persistence.jpa" })
+@EnableJpaRepositories(basePackages = { "com.amazon.proserve.infrastructure.flight.persistence" })
 public class DataSourceConfiguration {
 }

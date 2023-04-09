@@ -30,7 +30,7 @@ spring:
       ddl-auto: validate
     properties:
       hibernate:
-        "[default_schema]": "ledger"
+        "[default_schema]": "travelbuddy"
         dialect: org.hibernate.dialect.PostgreSQLDialect
         hbm2ddl:
           "[import_files_sql_extractor]": org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor
