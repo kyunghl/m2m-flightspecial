@@ -1,12 +1,14 @@
 package com.amazon.proserve.application.flight.service;
 
 import com.amazon.proserve.application.flight.usecase.GetFlightSpecialUseCase;
+import com.amazon.proserve.application.flight.view.FlightSpecialView;
 import com.amazon.proserve.domain.flight.FlightSpecial;
 import com.amazon.proserve.domain.flight.repository.FlightSpecialRepository;
 
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -15,17 +17,9 @@ import org.springframework.stereotype.Service;
 public class GetFlightSpecialService implements GetFlightSpecialUseCase {
     private final FlightSpecialRepository repository;
 
-    // @Override
-    // public void changeCustomerName(ChangeCustomerNameCommand command) {
-    // Customer Customer =
-    // repository.findByCustomerNo(CustomerNo.of(command.getCustomerNo()));
-    // Customer.changeCustomerName(command.getNewCustomerName());
-    // repository.save(Customer);
-    // }
-
     @Override
-    public List<FlightSpecial> getFlightSpecial() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getFlightSpecial'");
+    public List<FlightSpecialView> getFlightSpecial() {
+        List<FlightSpecial> list = repository.findAll();
+        return list.stream().map(x -> FlightSpecialView.of(x)).collect(Collectors.toList());
     }
 }

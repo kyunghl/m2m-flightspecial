@@ -1,13 +1,14 @@
 package com.amazon.proserve
 
-import com.amazon.proserve.customer.api.dto.ApiResult
-import com.amazon.proserve.customer.api.dto.ChangeCustomerNameRequest
+import com.amazon.proserve.flight.api.dto.ApiResult
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.client.TestRestTemplate
 import org.springframework.boot.web.server.LocalServerPort
 import org.springframework.http.HttpStatus
 import spock.lang.Specification
+import com.amazon.proserve.application.flight.view.FlightSpecialView
+import java.util.List
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class CustomerApiTest extends Specification {
@@ -17,15 +18,10 @@ class CustomerApiTest extends Specification {
     @Autowired
     private TestRestTemplate restTemplate
 
-    def "change Customer name"() {
+    def "get flight special"() {
         given:
-        ChangeCustomerNameRequest request = ChangeCustomerNameRequest.builder()
-                .customerNo(BigInteger.ONE)
-                .customerNm("Sally")
-                .build();
-
         when:
-        def entity = this.restTemplate.postForEntity("/customer/1/nickname", request, ApiResult)
+        def entity = this.restTemplate.getForEntity("/flightspecials", List<FlightSpecialView>)
 
         then:
         entity.getStatusCode() == HttpStatus.OK
