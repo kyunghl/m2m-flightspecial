@@ -8,7 +8,7 @@ Monolith 예제인 TravelBuddy 애플리케이션에서 Flight 부분을 분해�
 - [Strangler Fig Pattern](./docs/strangler-fig.md) - FlightSpecial 서비스
   - [Docker Compose](./docs/compose.md)
   - [Package 구조](./docs/package.md)
-- 실습: HotelSpecial 애플리케이션을 분리
+- 실습: [HotelSpecial](https://github.com/kyunghl/m2m-hotelspecial) 애플리케이션을 분리
 - 부록: [API Gateway](./docs/apigw.md)
 - 부록: [CQRS 패턴](./docs/cqrs.md)
 
