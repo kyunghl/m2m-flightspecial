@@ -8,7 +8,6 @@ import lombok.*;
 import javax.persistence.*;
 import javax.persistence.Id;
 
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,7 +22,7 @@ import java.util.stream.Collectors;
 public class FlightJpaEntity {
         @Id
         @Column(name = "flight_no", nullable = false)
-        private BigInteger flightNo;
+        private Long flightNo;
 
         @Column(name = "profile_id", nullable = false)
         private String profileId;
@@ -35,16 +34,13 @@ public class FlightJpaEntity {
         private String pushingStatusCode;
 
         @Column(name = "poping_step", nullable = false)
-        private int popingStep;
+        private Integer popingStep;
 
         @Column(name = "registration_date_time", nullable = false, columnDefinition = "TIMESTAMP")
         private LocalDateTime registrationDateTime;
 
         @Column(name = "register_id")
         private String registerId;
-
-        @Column(name = "modify_date_time", nullable = false, columnDefinition = "TIMESTAMP")
-        private LocalDateTime modifyDateTime;
 
         @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
         @JoinColumn(name = "flight_no")
@@ -59,7 +55,6 @@ public class FlightJpaEntity {
                                 .popingStep(domainEntity.getPopingStep().getValue())
                                 .registerId(domainEntity.getRegisterId())
                                 .registrationDateTime(domainEntity.getRegistrationDateTime())
-                                .modifyDateTime(domainEntity.getModifyDateTime())
                                 .flightNameHistories(domainEntity.getFlightNameHistories().stream()
                                                 .map(FlightNameHistoryJpaEntity::fromDomainEntity)
                                                 .collect(Collectors.toList()))
@@ -75,7 +70,6 @@ public class FlightJpaEntity {
                                 .popingStep(PopingStep.of(this.popingStep))
                                 .registerId(this.registerId)
                                 .registrationDateTime(this.registrationDateTime)
-                                .modifyDateTime(this.modifyDateTime)
                                 .flightNameHistories(this.flightNameHistories.stream()
                                                 .map(FlightNameHistoryJpaEntity::toDomainEntity)
                                                 .collect(Collectors.toList()))

@@ -8,7 +8,6 @@ import lombok.Getter;
 import lombok.ToString;
 
 import javax.validation.constraints.NotNull;
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -69,12 +68,11 @@ public final class Flight {
      */
     private void addFlightNameHistory(FlightName oldName) {
         int currentHistoryCount = this.flightNameHistories.size();
-        FlightNameHistoryNo newHistoryNo = FlightNameHistoryNo.of(BigInteger.valueOf(currentHistoryCount + 1));
+        FlightNameHistoryNo newHistoryNo = FlightNameHistoryNo.of(Long.valueOf(currentHistoryCount + 1));
         FlightNameHistory history = FlightNameHistory.of(
                 this.flightNo,
                 newHistoryNo,
-                oldName,
-                LocalDateTime.now());
+                oldName);
         flightNameHistories.add(history);
     }
 }

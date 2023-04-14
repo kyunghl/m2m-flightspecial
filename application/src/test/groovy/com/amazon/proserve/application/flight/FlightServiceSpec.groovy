@@ -8,22 +8,20 @@ import com.amazon.proserve.domain.flight.repository.FlightRepository
 import com.amazon.proserve.domain.flight.vo.*
 import spock.lang.Specification
 
-import static java.math.BigInteger.ONE
-
 class FlightServiceSpec extends Specification {
     def "change name test"() {
         given:
         Flight flight = Flight.builder()
-                .flightNo(FlightNo.of(ONE))
+                .flightNo(FlightNo.of(1L))
                 .profileId(ProfileId.of("PRF-1"))
                 .flightName(FlightName.of("Bingo"))
                 .platform(Platform.ANDROID)
                 .build()
         FlightRepository repository = Mock()
-        repository.findByFlightNo(FlightNo.of(ONE)) >> flight
+        repository.findByFlightNo(FlightNo.of(1L)) >> flight
 
         ChangeFlightNameUseCase useCase = new ChangeFlightNameService(repository)
-        ChangeFlightNameCommand command = ChangeFlightNameCommand.of(ONE, "Sally")
+        ChangeFlightNameCommand command = ChangeFlightNameCommand.of(1L, "Sally")
 
         when:
         useCase.changeFlightName(command)

@@ -12,8 +12,6 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 
 import javax.transaction.Transactional;
 
-import static java.math.BigInteger.ONE;
-
 //@DataJpaTest
 @Testcontainers
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -27,7 +25,7 @@ public class FlightPersistenceAdapterTest {
     public void saveAndGet() {
         FlightRepository FlightRepository = new FlightPersistenceAdapter(repository);
         Flight flight = Flight.builder()
-                .flightNo(FlightNo.of(ONE))
+                .flightNo(FlightNo.of(1L))
                 .profileId(ProfileId.of("PRF-1"))
                 .flightName(FlightName.of("Bingo"))
                 .platform(Platform.ANDROID)

@@ -1,6 +1,7 @@
 package com.amazon.proserve.domain.flight;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import javax.validation.constraints.NotNull;
@@ -40,7 +41,7 @@ public class FlightSpecial {
 
     private Cost cost;
 
-    private LocalDate expiryDate;
+    private LocalDateTime expiryDate;
 
     @Override
     public boolean equals(Object obj) {

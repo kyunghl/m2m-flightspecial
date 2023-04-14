@@ -11,7 +11,7 @@ import com.amazon.proserve.domain.flight.vo.Header;
 import com.amazon.proserve.domain.flight.vo.Origin;
 import com.amazon.proserve.domain.flight.vo.OriginCode;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -55,7 +55,7 @@ public class FlightSpecialJpaEntity {
         private Integer cost;
 
         @Column(name = "expiryDate", columnDefinition = "DATE")
-        private LocalDate expiryDate;
+        private LocalDateTime expiryDate;
 
         public static FlightSpecialJpaEntity fromDomainEntity(FlightSpecial domainEntity) {
                 return FlightSpecialJpaEntity.builder()

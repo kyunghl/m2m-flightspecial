@@ -8,8 +8,6 @@ import com.amazon.proserve.domain.flight.vo.FlightName;
 import com.amazon.proserve.domain.flight.vo.FlightNameHistoryNo;
 import com.amazon.proserve.domain.flight.vo.FlightNo;
 
-import java.time.LocalDateTime;
-
 @Value(staticConstructor = "of")
 public class FlightNameHistory {
     @NotNull
@@ -18,6 +16,4 @@ public class FlightNameHistory {
     FlightNameHistoryNo flightNameHistoryNo;
     @NotNull
     FlightName flightName;
-    @NotNull
-    LocalDateTime historyRegistrationDateTime;
 }

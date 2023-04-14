@@ -7,8 +7,6 @@ import com.amazon.proserve.domain.flight.repository.FlightSpecialRepository
 import com.amazon.proserve.domain.flight.vo.*
 import spock.lang.Specification
 
-import static java.math.BigInteger.ONE
-
 class FlightSpecialServiceSpec extends Specification {
     // def "change name test"() {
     //     given:

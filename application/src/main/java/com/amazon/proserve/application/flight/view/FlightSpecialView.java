@@ -1,6 +1,6 @@
 package com.amazon.proserve.application.flight.view;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import com.amazon.proserve.domain.flight.FlightSpecial;
 
@@ -17,7 +17,7 @@ public class FlightSpecialView {
     private String destination;
     private String destinationCode;
     private Integer cost;
-    private LocalDate expiryDate;
+    private LocalDateTime expiryDate;
 
     public static FlightSpecialView of(FlightSpecial flightSpecial) {
         return FlightSpecialView.builder()

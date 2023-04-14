@@ -8,8 +8,6 @@ import com.amazon.proserve.domain.flight.vo.FlightNo;
 import lombok.*;
 
 import javax.persistence.*;
-import java.math.BigInteger;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "flight_name_history")
@@ -21,23 +19,19 @@ import java.time.LocalDateTime;
 public class FlightNameHistoryJpaEntity {
     @Id
     @Column(name = "flight_name_history_no", nullable = false)
-    private BigInteger flightNameHistoryNo;
+    private Long flightNameHistoryNo;
 
     @Column(name = "flight_no", nullable = false)
-    private BigInteger flightNo;
+    private Long flightNo;
 
     @Column(name = "flight_name", nullable = false)
     private String flightName;
-
-    @Column(name = "history_registration_date_time", nullable = false, columnDefinition = "TIMESTAMP")
-    private LocalDateTime historyRegistrationDateTime;
 
     public static FlightNameHistoryJpaEntity fromDomainEntity(FlightNameHistory domainEntity) {
         return FlightNameHistoryJpaEntity.builder()
                 .flightNameHistoryNo(domainEntity.getFlightNameHistoryNo().getValue())
                 .flightNo(domainEntity.getFlightNo().getValue())
                 .flightName(domainEntity.getFlightName().getValue())
-                .historyRegistrationDateTime(domainEntity.getHistoryRegistrationDateTime())
                 .build();
     }
 
@@ -45,7 +39,6 @@ public class FlightNameHistoryJpaEntity {
         return FlightNameHistory.of(
                 FlightNo.of(this.flightNo),
                 FlightNameHistoryNo.of(this.flightNameHistoryNo),
-                FlightName.of(this.flightName),
-                this.historyRegistrationDateTime);
+                FlightName.of(this.flightName));
     }
 }
